@@ -1,10 +1,11 @@
 full<-read.csv("~/Documents/newdata.csv")
 View(full)
 
+# packages
 library(ggplot2)
 library(ggthemes) # to access theme_hc()
 
-
+# summary statistic plots
 ggplot(data = full, mapping = aes(x = Year, y = LFPF, color = Country)) + # specify data, x-axis, y-axis and grouping variable
   geom_line() + # a line per group
   geom_point() + # points per group
@@ -97,7 +98,7 @@ summary(panel.LFPF)
 
 stargazer(panel.LFP, panel.LFPM, panel.LFPF)
 
-# FE
+# fixed effects
 
 Within.LFPED <- plm(LFP ~ log(BOP+ 200000000000)  + FER + log(GDP) + INF + SOC + POP + HOUR, data = full, model="within")
 summary(Within.LFPED)
@@ -116,7 +117,7 @@ coef(Within.LFPED, Within.LFPMED, Within.LFPFED)
 fixef(Within.LFPED, Within.LFPMED, Within.LFPFED)
 
 
-
+# packages
 library(tidyverse)
 library(dotwhisker)
 library(gapminder)
